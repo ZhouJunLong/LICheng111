@@ -21,6 +21,12 @@
 		5AD1CB841BE0CC1F00BB7ACD /* zhanting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1CB831BE0CC1F00BB7ACD /* zhanting@2x.png */; };
 		5AD1CB871BE0D0F500BB7ACD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1CB861BE0D0F500BB7ACD /* ViewController.m */; };
 		5AD42F3D1BE0B472006DA2B2 /* RadioListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD42F3C1BE0B472006DA2B2 /* RadioListViewController.m */; };
+		79340EA31BE0E56A003681A0 /* radio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79340E9F1BE0E56A003681A0 /* radio@2x.png */; };
+		79340EA41BE0E56A003681A0 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79340EA01BE0E56A003681A0 /* news@2x.png */; };
+		79340EA51BE0E56A003681A0 /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79340EA11BE0E56A003681A0 /* video@2x.png */; };
+		79340EA61BE0E56A003681A0 /* wode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79340EA21BE0E56A003681A0 /* wode@2x.png */; };
+		79340EAA1BE0E7CB003681A0 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 79340EA91BE0E7CB003681A0 /* UIColor+CustomColor.m */; };
+		79340EAC1BE0E8DF003681A0 /* text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79340EAB1BE0E8DF003681A0 /* text.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +74,13 @@
 		5AD1CB861BE0D0F500BB7ACD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5AD42F3B1BE0B472006DA2B2 /* RadioListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioListViewController.h; sourceTree = "<group>"; };
 		5AD42F3C1BE0B472006DA2B2 /* RadioListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioListViewController.m; sourceTree = "<group>"; };
+		79340E9F1BE0E56A003681A0 /* radio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio@2x.png"; sourceTree = "<group>"; };
+		79340EA01BE0E56A003681A0 /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
+		79340EA11BE0E56A003681A0 /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video@2x.png"; sourceTree = "<group>"; };
+		79340EA21BE0E56A003681A0 /* wode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wode@2x.png"; sourceTree = "<group>"; };
+		79340EA81BE0E7CB003681A0 /* UIColor+CustomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColor.h"; sourceTree = "<group>"; };
+		79340EA91BE0E7CB003681A0 /* UIColor+CustomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColor.m"; sourceTree = "<group>"; };
+		79340EAB1BE0E8DF003681A0 /* text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = text.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +111,7 @@
 		5A9EEA881BE0AEB1009E304A = {
 			isa = PBXGroup;
 			children = (
+				79340EA71BE0E7CB003681A0 /* ThirtyPart */,
 				5A9EEA931BE0AEB1009E304A /* EnjoyLive */,
 				5A9EEAAA1BE0AEB1009E304A /* EnjoyLiveTests */,
 				5A9EEAB51BE0AEB1009E304A /* EnjoyLiveUITests */,
@@ -126,7 +140,6 @@
 				5A9EEAD01BE0B0BB009E304A /* Video */,
 				5A9EEAC41BE0B0BB009E304A /* MyInfo */,
 				5A9EEAD41BE0B104009E304A /* Images */,
-				5A9EEAD51BE0B104009E304A /* ThirtyPart */,
 				5A9EEA9D1BE0AEB1009E304A /* Assets.xcassets */,
 				5A9EEA9F1BE0AEB1009E304A /* LaunchScreen.storyboard */,
 				5A9EEA941BE0AEB1009E304A /* Supporting Files */,
@@ -298,15 +311,13 @@
 			isa = PBXGroup;
 			children = (
 				5AD1CB831BE0CC1F00BB7ACD /* zhanting@2x.png */,
+				79340E9F1BE0E56A003681A0 /* radio@2x.png */,
+				79340EA01BE0E56A003681A0 /* news@2x.png */,
+				79340EA11BE0E56A003681A0 /* video@2x.png */,
+				79340EA21BE0E56A003681A0 /* wode@2x.png */,
+				79340EAB1BE0E8DF003681A0 /* text.jpg */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		5A9EEAD51BE0B104009E304A /* ThirtyPart */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThirtyPart;
 			sourceTree = "<group>";
 		};
 		5A9EEAD61BE0B143009E304A /* App */ = {
@@ -382,6 +393,16 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		79340EA71BE0E7CB003681A0 /* ThirtyPart */ = {
+			isa = PBXGroup;
+			children = (
+				79340EA81BE0E7CB003681A0 /* UIColor+CustomColor.h */,
+				79340EA91BE0E7CB003681A0 /* UIColor+CustomColor.m */,
+			);
+			name = ThirtyPart;
+			path = EnjoyLive/ThirtyPart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,8 +512,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A9EEA9E1BE0AEB1009E304A /* Assets.xcassets in Resources */,
+				79340EA41BE0E56A003681A0 /* news@2x.png in Resources */,
+				79340EA61BE0E56A003681A0 /* wode@2x.png in Resources */,
+				79340EA31BE0E56A003681A0 /* radio@2x.png in Resources */,
+				79340EAC1BE0E8DF003681A0 /* text.jpg in Resources */,
 				5A9EEAA11BE0AEB1009E304A /* LaunchScreen.storyboard in Resources */,
 				5AD1CB841BE0CC1F00BB7ACD /* zhanting@2x.png in Resources */,
+				79340EA51BE0E56A003681A0 /* video@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79340EAA1BE0E7CB003681A0 /* UIColor+CustomColor.m in Sources */,
 				5A9EEA9C1BE0AEB1009E304A /* EnjoyLive.xcdatamodeld in Sources */,
 				5A9EEA961BE0AEB1009E304A /* main.m in Sources */,
 				5AD1CB791BE0B92200BB7ACD /* MyInfoViewController.m in Sources */,
