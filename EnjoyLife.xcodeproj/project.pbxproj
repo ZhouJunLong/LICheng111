@@ -1,0 +1,710 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		798412D21BE1041F009D8926 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 798412D11BE1041F009D8926 /* main.m */; };
+		798412D71BE1041F009D8926 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798412D61BE1041F009D8926 /* Images.xcassets */; };
+		798412DA1BE1041F009D8926 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798412D81BE1041F009D8926 /* LaunchScreen.xib */; };
+		798412E61BE1041F009D8926 /* EnjoyLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 798412E51BE1041F009D8926 /* EnjoyLifeTests.m */; };
+		798413011BE104C4009D8926 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 798412F11BE104C4009D8926 /* AppDelegate.m */; };
+		798413021BE104C4009D8926 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 798412F31BE104C4009D8926 /* news@2x.png */; };
+		798413031BE104C4009D8926 /* radio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 798412F41BE104C4009D8926 /* radio@2x.png */; };
+		798413041BE104C4009D8926 /* text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 798412F51BE104C4009D8926 /* text.jpg */; };
+		798413051BE104C4009D8926 /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 798412F61BE104C4009D8926 /* video@2x.png */; };
+		798413061BE104C4009D8926 /* wode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 798412F71BE104C4009D8926 /* wode@2x.png */; };
+		798413071BE104C4009D8926 /* zhanting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 798412F81BE104C4009D8926 /* zhanting@2x.png */; };
+		798413491BE10F5A009D8926 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413251BE10F5A009D8926 /* ViewController.m */; };
+		7984134A1BE10F5A009D8926 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7984132B1BE10F5A009D8926 /* MyInfoViewController.m */; };
+		7984134B1BE10F5A009D8926 /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413311BE10F5A009D8926 /* NewsListViewController.m */; };
+		7984134C1BE10F5A009D8926 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413371BE10F5A009D8926 /* PlayerViewController.m */; };
+		7984134D1BE10F5A009D8926 /* RadioListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7984133D1BE10F5A009D8926 /* RadioListViewController.m */; };
+		7984134E1BE10F5A009D8926 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413421BE10F5A009D8926 /* UIColor+CustomColor.m */; };
+		7984134F1BE10F5A009D8926 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413461BE10F5A009D8926 /* VideoListViewController.m */; };
+		798413521BE10FF5009D8926 /* RadioListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798413511BE10FF5009D8926 /* RadioListModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		798412E01BE1041F009D8926 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 798412C41BE1041F009D8926 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 798412CB1BE1041F009D8926;
+			remoteInfo = EnjoyLife;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		798412CC1BE1041F009D8926 /* EnjoyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnjoyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		798412D01BE1041F009D8926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798412D11BE1041F009D8926 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		798412D61BE1041F009D8926 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		798412D91BE1041F009D8926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		798412DF1BE1041F009D8926 /* EnjoyLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnjoyLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		798412E41BE1041F009D8926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798412E51BE1041F009D8926 /* EnjoyLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnjoyLifeTests.m; sourceTree = "<group>"; };
+		798412F01BE104C4009D8926 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		798412F11BE104C4009D8926 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		798412F31BE104C4009D8926 /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
+		798412F41BE104C4009D8926 /* radio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio@2x.png"; sourceTree = "<group>"; };
+		798412F51BE104C4009D8926 /* text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = text.jpg; sourceTree = "<group>"; };
+		798412F61BE104C4009D8926 /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video@2x.png"; sourceTree = "<group>"; };
+		798412F71BE104C4009D8926 /* wode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wode@2x.png"; sourceTree = "<group>"; };
+		798412F81BE104C4009D8926 /* zhanting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhanting@2x.png"; sourceTree = "<group>"; };
+		798413241BE10F5A009D8926 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		798413251BE10F5A009D8926 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7984132A1BE10F5A009D8926 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
+		7984132B1BE10F5A009D8926 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
+		798413301BE10F5A009D8926 /* NewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
+		798413311BE10F5A009D8926 /* NewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
+		798413361BE10F5A009D8926 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		798413371BE10F5A009D8926 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		7984133C1BE10F5A009D8926 /* RadioListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioListViewController.h; sourceTree = "<group>"; };
+		7984133D1BE10F5A009D8926 /* RadioListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioListViewController.m; sourceTree = "<group>"; };
+		798413411BE10F5A009D8926 /* UIColor+CustomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColor.h"; sourceTree = "<group>"; };
+		798413421BE10F5A009D8926 /* UIColor+CustomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColor.m"; sourceTree = "<group>"; };
+		798413451BE10F5A009D8926 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
+		798413461BE10F5A009D8926 /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
+		798413501BE10FF5009D8926 /* RadioListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioListModel.h; sourceTree = "<group>"; };
+		798413511BE10FF5009D8926 /* RadioListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioListModel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		798412C91BE1041F009D8926 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798412DC1BE1041F009D8926 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		798412C31BE1041F009D8926 = {
+			isa = PBXGroup;
+			children = (
+				798412CE1BE1041F009D8926 /* EnjoyLife */,
+				798412E21BE1041F009D8926 /* EnjoyLifeTests */,
+				798412CD1BE1041F009D8926 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		798412CD1BE1041F009D8926 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				798412CC1BE1041F009D8926 /* EnjoyLife.app */,
+				798412DF1BE1041F009D8926 /* EnjoyLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		798412CE1BE1041F009D8926 /* EnjoyLife */ = {
+			isa = PBXGroup;
+			children = (
+				798412EF1BE104C4009D8926 /* App */,
+				798413221BE10F5A009D8926 /* Main */,
+				798413281BE10F5A009D8926 /* MyInfo */,
+				7984132E1BE10F5A009D8926 /* News */,
+				798413341BE10F5A009D8926 /* Player */,
+				7984133A1BE10F5A009D8926 /* Radio */,
+				798413401BE10F5A009D8926 /* ThirtyPart */,
+				798413431BE10F5A009D8926 /* Video */,
+				798412F21BE104C4009D8926 /* Images */,
+				798412D61BE1041F009D8926 /* Images.xcassets */,
+				798412D81BE1041F009D8926 /* LaunchScreen.xib */,
+				798412CF1BE1041F009D8926 /* Supporting Files */,
+			);
+			path = EnjoyLife;
+			sourceTree = "<group>";
+		};
+		798412CF1BE1041F009D8926 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				798412D01BE1041F009D8926 /* Info.plist */,
+				798412D11BE1041F009D8926 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		798412E21BE1041F009D8926 /* EnjoyLifeTests */ = {
+			isa = PBXGroup;
+			children = (
+				798412E51BE1041F009D8926 /* EnjoyLifeTests.m */,
+				798412E31BE1041F009D8926 /* Supporting Files */,
+			);
+			path = EnjoyLifeTests;
+			sourceTree = "<group>";
+		};
+		798412E31BE1041F009D8926 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				798412E41BE1041F009D8926 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		798412EF1BE104C4009D8926 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				798412F01BE104C4009D8926 /* AppDelegate.h */,
+				798412F11BE104C4009D8926 /* AppDelegate.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		798412F21BE104C4009D8926 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				798412F31BE104C4009D8926 /* news@2x.png */,
+				798412F41BE104C4009D8926 /* radio@2x.png */,
+				798412F51BE104C4009D8926 /* text.jpg */,
+				798412F61BE104C4009D8926 /* video@2x.png */,
+				798412F71BE104C4009D8926 /* wode@2x.png */,
+				798412F81BE104C4009D8926 /* zhanting@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		798413221BE10F5A009D8926 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				798413231BE10F5A009D8926 /* Controller */,
+				798413261BE10F5A009D8926 /* Model */,
+				798413271BE10F5A009D8926 /* View */,
+			);
+			name = Main;
+			path = Images/Main;
+			sourceTree = "<group>";
+		};
+		798413231BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				798413241BE10F5A009D8926 /* ViewController.h */,
+				798413251BE10F5A009D8926 /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		798413261BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		798413271BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		798413281BE10F5A009D8926 /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				798413291BE10F5A009D8926 /* Controller */,
+				7984132C1BE10F5A009D8926 /* Model */,
+				7984132D1BE10F5A009D8926 /* View */,
+			);
+			name = MyInfo;
+			path = Images/MyInfo;
+			sourceTree = "<group>";
+		};
+		798413291BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7984132A1BE10F5A009D8926 /* MyInfoViewController.h */,
+				7984132B1BE10F5A009D8926 /* MyInfoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7984132C1BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7984132D1BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7984132E1BE10F5A009D8926 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				7984132F1BE10F5A009D8926 /* Controller */,
+				798413321BE10F5A009D8926 /* Model */,
+				798413331BE10F5A009D8926 /* View */,
+			);
+			name = News;
+			path = Images/News;
+			sourceTree = "<group>";
+		};
+		7984132F1BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				798413301BE10F5A009D8926 /* NewsListViewController.h */,
+				798413311BE10F5A009D8926 /* NewsListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		798413321BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		798413331BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		798413341BE10F5A009D8926 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				798413351BE10F5A009D8926 /* Controller */,
+				798413381BE10F5A009D8926 /* Model */,
+				798413391BE10F5A009D8926 /* View */,
+			);
+			name = Player;
+			path = Images/Player;
+			sourceTree = "<group>";
+		};
+		798413351BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				798413361BE10F5A009D8926 /* PlayerViewController.h */,
+				798413371BE10F5A009D8926 /* PlayerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		798413381BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		798413391BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7984133A1BE10F5A009D8926 /* Radio */ = {
+			isa = PBXGroup;
+			children = (
+				7984133B1BE10F5A009D8926 /* Controller */,
+				7984133E1BE10F5A009D8926 /* Model */,
+				7984133F1BE10F5A009D8926 /* View */,
+			);
+			name = Radio;
+			path = Images/Radio;
+			sourceTree = "<group>";
+		};
+		7984133B1BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7984133C1BE10F5A009D8926 /* RadioListViewController.h */,
+				7984133D1BE10F5A009D8926 /* RadioListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7984133E1BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				798413501BE10FF5009D8926 /* RadioListModel.h */,
+				798413511BE10FF5009D8926 /* RadioListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7984133F1BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		798413401BE10F5A009D8926 /* ThirtyPart */ = {
+			isa = PBXGroup;
+			children = (
+				798413411BE10F5A009D8926 /* UIColor+CustomColor.h */,
+				798413421BE10F5A009D8926 /* UIColor+CustomColor.m */,
+			);
+			name = ThirtyPart;
+			path = Images/ThirtyPart;
+			sourceTree = "<group>";
+		};
+		798413431BE10F5A009D8926 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				798413441BE10F5A009D8926 /* Controller */,
+				798413471BE10F5A009D8926 /* Model */,
+				798413481BE10F5A009D8926 /* View */,
+			);
+			name = Video;
+			path = Images/Video;
+			sourceTree = "<group>";
+		};
+		798413441BE10F5A009D8926 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				798413451BE10F5A009D8926 /* VideoListViewController.h */,
+				798413461BE10F5A009D8926 /* VideoListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		798413471BE10F5A009D8926 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		798413481BE10F5A009D8926 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		798412CB1BE1041F009D8926 /* EnjoyLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 798412E91BE1041F009D8926 /* Build configuration list for PBXNativeTarget "EnjoyLife" */;
+			buildPhases = (
+				798412C81BE1041F009D8926 /* Sources */,
+				798412C91BE1041F009D8926 /* Frameworks */,
+				798412CA1BE1041F009D8926 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnjoyLife;
+			productName = EnjoyLife;
+			productReference = 798412CC1BE1041F009D8926 /* EnjoyLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		798412DE1BE1041F009D8926 /* EnjoyLifeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 798412EC1BE1041F009D8926 /* Build configuration list for PBXNativeTarget "EnjoyLifeTests" */;
+			buildPhases = (
+				798412DB1BE1041F009D8926 /* Sources */,
+				798412DC1BE1041F009D8926 /* Frameworks */,
+				798412DD1BE1041F009D8926 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				798412E11BE1041F009D8926 /* PBXTargetDependency */,
+			);
+			name = EnjoyLifeTests;
+			productName = EnjoyLifeTests;
+			productReference = 798412DF1BE1041F009D8926 /* EnjoyLifeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		798412C41BE1041F009D8926 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Drop;
+				TargetAttributes = {
+					798412CB1BE1041F009D8926 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					798412DE1BE1041F009D8926 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 798412CB1BE1041F009D8926;
+					};
+				};
+			};
+			buildConfigurationList = 798412C71BE1041F009D8926 /* Build configuration list for PBXProject "EnjoyLife" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 798412C31BE1041F009D8926;
+			productRefGroup = 798412CD1BE1041F009D8926 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				798412CB1BE1041F009D8926 /* EnjoyLife */,
+				798412DE1BE1041F009D8926 /* EnjoyLifeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		798412CA1BE1041F009D8926 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798413061BE104C4009D8926 /* wode@2x.png in Resources */,
+				798413031BE104C4009D8926 /* radio@2x.png in Resources */,
+				798413041BE104C4009D8926 /* text.jpg in Resources */,
+				798413051BE104C4009D8926 /* video@2x.png in Resources */,
+				798412DA1BE1041F009D8926 /* LaunchScreen.xib in Resources */,
+				798412D71BE1041F009D8926 /* Images.xcassets in Resources */,
+				798413021BE104C4009D8926 /* news@2x.png in Resources */,
+				798413071BE104C4009D8926 /* zhanting@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798412DD1BE1041F009D8926 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		798412C81BE1041F009D8926 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798413491BE10F5A009D8926 /* ViewController.m in Sources */,
+				7984134D1BE10F5A009D8926 /* RadioListViewController.m in Sources */,
+				7984134E1BE10F5A009D8926 /* UIColor+CustomColor.m in Sources */,
+				798413521BE10FF5009D8926 /* RadioListModel.m in Sources */,
+				798412D21BE1041F009D8926 /* main.m in Sources */,
+				7984134A1BE10F5A009D8926 /* MyInfoViewController.m in Sources */,
+				798413011BE104C4009D8926 /* AppDelegate.m in Sources */,
+				7984134B1BE10F5A009D8926 /* NewsListViewController.m in Sources */,
+				7984134F1BE10F5A009D8926 /* VideoListViewController.m in Sources */,
+				7984134C1BE10F5A009D8926 /* PlayerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798412DB1BE1041F009D8926 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798412E61BE1041F009D8926 /* EnjoyLifeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		798412E11BE1041F009D8926 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 798412CB1BE1041F009D8926 /* EnjoyLife */;
+			targetProxy = 798412E01BE1041F009D8926 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		798412D81BE1041F009D8926 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				798412D91BE1041F009D8926 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		798412E71BE1041F009D8926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		798412E81BE1041F009D8926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		798412EA1BE1041F009D8926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EnjoyLife/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		798412EB1BE1041F009D8926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EnjoyLife/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		798412ED1BE1041F009D8926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EnjoyLifeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnjoyLife.app/EnjoyLife";
+			};
+			name = Debug;
+		};
+		798412EE1BE1041F009D8926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = EnjoyLifeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnjoyLife.app/EnjoyLife";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		798412C71BE1041F009D8926 /* Build configuration list for PBXProject "EnjoyLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				798412E71BE1041F009D8926 /* Debug */,
+				798412E81BE1041F009D8926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		798412E91BE1041F009D8926 /* Build configuration list for PBXNativeTarget "EnjoyLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				798412EA1BE1041F009D8926 /* Debug */,
+				798412EB1BE1041F009D8926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		798412EC1BE1041F009D8926 /* Build configuration list for PBXNativeTarget "EnjoyLifeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				798412ED1BE1041F009D8926 /* Debug */,
+				798412EE1BE1041F009D8926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 798412C41BE1041F009D8926 /* Project object */;
+}
