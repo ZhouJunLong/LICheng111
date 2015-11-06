@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SortDetailList;
 @interface SortDetailViewController : UIViewController
 
+@property (nonatomic, strong)SortDetailList *sortListModel;
+@property (nonatomic,assign)NSInteger albumId;
 @end

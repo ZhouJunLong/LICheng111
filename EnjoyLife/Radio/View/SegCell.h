@@ -10,4 +10,5 @@
 
 @interface SegCell : UICollectionViewCell
 
+@property (nonatomic, strong)UILabel *label;
 @end

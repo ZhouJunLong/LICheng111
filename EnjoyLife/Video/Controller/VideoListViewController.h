@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScrollView.h"
 #import "View2.h"
 #import "Model2.h"
 #import "ScrollModel.h"
@@ -20,8 +19,6 @@
 @property (nonatomic, strong)View2 *view2;
 
 @property (nonatomic, strong)Model2 *model2;
-
-@property (nonatomic, strong)ScrollView *scrollVeiw;
 
 @property (nonatomic, strong)ScrollModel *scrollModel;
 

@@ -14,15 +14,15 @@
 #import "FocusModel.h"
 #import "SortListCell.h"
 #import "UIColor+CustomColor.h"
-//#import "SDCycleScrollView.h"
+
 @interface RecommendView()<UITableViewDelegate,UITableViewDataSource>
 
 
 @end
 @implementation RecommendView
 
-
--(instancetype)initWithFrame:(CGRect)frame{
+-(instancetype)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -41,21 +41,20 @@
     if (section == 0) {
         return 1;
     }else{
-    
-    
         return 4;
     }
     
 }
 //分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    NSLog(@"%ld", self.titleModelArray.count);
     return self.titleModelArray.count;
+//    return 2;
 }
 //设置分区头标题
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return 0;
 }
-
 
 //行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,69 +71,45 @@
     }
 }
 
-
-
-
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
        
-        
         FocusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" ];
         if (cell == nil) {
             cell = [[FocusCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell2"];
             
         }
-        
-        //cell.backgroundColor = [UIColor redColor];
-        
         cell.imageArray = self.imageArray;
         cell.focusModelArray = self.focusModelArray;
-        
-       
         return cell;
 
     }else{
-    
-    
-    if ( indexPath.row == 0) {
-        
-        
-        TitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        if (cell == nil) {
-            cell = [[TitleCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell"];
+        if ( indexPath.row == 0) {
+            TitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            if (cell == nil) {
+                cell = [[TitleCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell"];
             
+            }
+            cell.titleModel = self.titleModelArray[indexPath.section-1];
+            cell.backgroundColor = [UIColor whiteSmokeColor];
+//            cell.moreLabel.textColor = [UIColor jinjuse];
+        
+            return cell;
+
+        }else{
+    
+            SortListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
+            if (cell == nil) {
+                cell = [[SortListCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell1"];
+            }
+        
+            TitleModel *model = self.titleModelArray[indexPath.section-1];
+            cell.sortModel = [[model list] objectAtIndex:indexPath.row - 1];
+
+            return cell;
         }
-        cell.titleModel = self.titleModelArray[indexPath.section-1];
-//        cell.moreLabel.textColor = [UIColor jinjuse];
-        
-       // NSLog(@"%ld",indexPath.section);
-        
-        
-        
-        return cell;
-
-    }else{
-        
-    
-    SortListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
-    if (cell == nil) {
-        cell = [[SortListCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell1"];
-        
     }
-        
-        TitleModel *model = self.titleModelArray[indexPath.section-1];
-        cell.sortModel = [[model list] objectAtIndex:indexPath.row - 1];
-        
-
-        
-       
-        return cell;
-    }
-    
-    }
-
 }
 
 
@@ -144,8 +119,15 @@
 
 
 -(void)setFocusModelArray:(NSMutableArray *)focusModelArray{
-    _focusModelArray = focusModelArray;
+    _focusModelArray = [NSMutableArray arrayWithArray:focusModelArray];
+//    _focusModelArray = focusModelArray;
     [self.tableView reloadData];
+}
+-(void)setImageArray:(NSMutableArray *)imageArray
+{
+    _imageArray = [NSMutableArray arrayWithArray:imageArray];
+    [self.tableView reloadData];
+
 }
 
 -(void)setTitleModelArray:(NSMutableArray *)titleModelArray{

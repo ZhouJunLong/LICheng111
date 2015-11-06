@@ -21,12 +21,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-80)];
         _tableView.dataSource = self;
         _tableView.delegate =self;
         _tableView.rowHeight = 100;
         
-        _tableView.sectionFooterHeight = 200;
         [self addSubview:_tableView];
         
         
@@ -42,11 +41,7 @@
     if (cell == nil) {
         cell =[[HotTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"];
     }
-//    if (indexPath.row == 0) {
-//        cell.lable.textColor = [UIColor redColor];
-//    }else{
-//        cell.lable.textColor = [UIColor blackColor];
-//    }
+    cell.lable.highlightedTextColor = [UIColor grayColor];
     cell.model = _arrayModel[indexPath.row];
     return cell;
     
@@ -64,10 +59,6 @@
 {
     _arrayModel = arrayModel;
     [self.tableView reloadData];
-    
-    
-    
-    
 }
 
 

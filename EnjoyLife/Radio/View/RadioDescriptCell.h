@@ -10,4 +10,8 @@
 
 @interface RadioDescriptCell : UITableViewCell
 
+
+@property (nonatomic, strong) UIImageView *imageV;
+@property (nonatomic, strong) UILabel *nameL;
+@property (nonatomic, strong) UILabel *desL;
 @end

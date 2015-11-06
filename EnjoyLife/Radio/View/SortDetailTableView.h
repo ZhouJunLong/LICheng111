@@ -10,4 +10,7 @@
 
 @interface SortDetailTableView : UIView
 
+@property (nonatomic, strong)NSMutableArray *detailArr;
+@property (nonatomic, strong)UITableView *tableV;
+
 @end

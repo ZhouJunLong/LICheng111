@@ -21,8 +21,8 @@
         _tableView.dataSource = self;
         _tableView.delegate =self;
         _tableView.rowHeight = 100;
+        _tableView.backgroundColor = [UIColor whiteColor];
         
-        _tableView.sectionFooterHeight = 200;
         [self addSubview:_tableView];
         
         
@@ -40,7 +40,7 @@
     }
     
     if (indexPath.row == 0) {
-        cell.lable.textColor = [UIColor redColor];
+        cell.lable.textColor = [UIColor grayColor];
     }else{
         cell.lable.textColor = [UIColor blackColor];
     }

@@ -10,6 +10,11 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "NetHandler.h"
 #import "MBProgressHUD.h"
+#import "UIColor+CustomColor.h"
+#import "LMusicPlay.h"
+
+#import "PlayerViewController.h"
+#import "AudioStreamer.h"
 
 @interface HappyDetailViewController ()<UITableViewDelegate>
 
@@ -28,31 +33,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteSmokeColor];
 
+    self.navigationController.navigationBar.translucent = NO;
     
+    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:(UIBarButtonItemStyleDone) target:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem = back;
+    
+    // seg导航
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"相关",@"热点",@"排行"]];
-    seg.frame = CGRectMake(0, 50+self.view.bounds.size.height/3, self.view.bounds.size.width, 30);
+    seg.frame = CGRectMake(0, self.view.bounds.size.height/3-25, self.view.bounds.size.width, 30);
     seg.selectedSegmentIndex = 0;
+    seg.tintColor = [UIColor jinjuse];
     [seg addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:seg];
     
-    
-    _hotView = [[HotView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/3+80, self.view.bounds.size.width, self.view.bounds.size.height/3*2-50)];
+    // 热点
+    _hotView = [[HotView alloc]initWithFrame:CGRectMake(0, seg.bounds.size.height +seg.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height*2/3 - 35)];
     _hotView.tableView.delegate = self;
     [self.view addSubview:_hotView];
+
     
     
-    _videoDetailView = [[VideoDetailView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/3+80, self.view.bounds.size.width, self.view.bounds.size.height/3*2-50)];
+    _videoDetailView = [[VideoDetailView alloc]initWithFrame:CGRectMake(0, self.hotView.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height*2/3 - 35)];
     _videoDetailView.tableView.delegate = self;
     [self.view addSubview:_videoDetailView];
+    self.videoDetailView.backgroundColor = [UIColor brownColor];
+    
+   
+    
     [self loadVedio];
     [self handle];
+
+}
+
+-(void)back:(UIBarButtonItem *)bar
+{
+    [self.navigationController popViewControllerAnimated:YES];
     
-    
-    
-    
-    
+    [[LMusicPlay shareLmusicPlay] startPlay];
+    //        [player.audio start];#import "LMusicPlay.h"
+
 }
 -(void)loadVedio
 {
@@ -65,7 +86,7 @@
         NSURL *url = [NSURL URLWithString:string1];
         _mpc = [[MPMoviePlayerController alloc]initWithContentURL:url];
         
-        _mpc.view.frame = CGRectMake(0, 60, self.view.bounds.size.width, self.view.bounds.size.height/3-10);
+        _mpc.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/3-10);
         [self.view addSubview:_mpc.view];
         _mpc.shouldAutoplay = NO;
         [_mpc prepareToPlay];
@@ -128,6 +149,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    
     if (tableView == _videoDetailView.tableView) {
         if (_arrayModel.count != 0) {
             self.relatedModel = _arrayModel[indexPath.row];
@@ -142,8 +165,7 @@
             self.model = _arrayModel1[indexPath.row];
             self.str = self.model.guid;
             
-            [tableView setContentOffset:CGPointMake(0, 0) animated:YES];
-
+            [tableView setContentOffset:CGPointMake(0, 100* indexPath.row) animated:YES];
             [self loadVedio];
             [self handle];
         }

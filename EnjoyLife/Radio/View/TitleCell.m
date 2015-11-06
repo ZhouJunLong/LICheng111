@@ -23,14 +23,14 @@
         
         //标题
         self.titleLabel = [[UILabel alloc]init];
+        self.titleLabel.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:self.titleLabel];
         
         //更多
         self.moreLabel = [[UILabel alloc]init];
         self.moreLabel.font = [UIFont systemFontOfSize:14];
+        self.moreLabel.textColor = [UIColor grayColor];
         [self.contentView addSubview:self.moreLabel];
-        
-        
         
         //箭头
         self.arrowsV = [[UIImageView alloc]init];
@@ -44,15 +44,12 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.iconView.frame = CGRectMake(10, 10, 15, 15);
     
+    self.iconView.frame = CGRectMake(10, 0, 15, 15);
     
+    self.titleLabel.frame = CGRectMake(self.iconView.frame.origin.x + self.iconView.bounds.size.width + 5, self.iconView.frame.origin.y, 200, 30);
     
-    self.titleLabel.frame = CGRectMake(self.iconView.frame.origin.x + self.iconView.bounds.size.width + 5, self.iconView.frame.origin.y, 200, 20);
-    
-    
-    
-    self.moreLabel.frame = CGRectMake(self.bounds.size.width-50, self.iconView.frame.origin.y, 30, 20);
+    self.moreLabel.frame = CGRectMake(self.bounds.size.width-50, self.iconView.frame.origin.y, 30, 30);
     self.moreLabel.text = @"更多";
     
     

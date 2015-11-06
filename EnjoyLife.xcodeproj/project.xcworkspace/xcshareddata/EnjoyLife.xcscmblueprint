@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "233E70677020AB7C275812D0F78B63C81B591C9C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "3ae940f3-8410-4859-82cb-97a2b19ad8f4++3340" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3ae940f3-8410-4859-82cb-97a2b19ad8f4++3340" : 0,
+    "233E70677020AB7C275812D0F78B63C81B591C9C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C48F19CB-25F0-4A83-95FF-21C7D163F169",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3ae940f3-8410-4859-82cb-97a2b19ad8f4++3340" : "LICheng111\/EnjoyLife\/ThirtyPart\/MBProgressHUD\/",
+    "233E70677020AB7C275812D0F78B63C81B591C9C" : "LICheng111\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EnjoyLife",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EnjoyLife.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ZhouJunLong\/LICheng111.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "233E70677020AB7C275812D0F78B63C81B591C9C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/60.28.29.48:8082\/svn",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3ae940f3-8410-4859-82cb-97a2b19ad8f4++3340"
+    }
+  ]
+}

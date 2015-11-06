@@ -21,6 +21,7 @@
         
         _lable = [[UILabel alloc]init];
         _lable.textColor = [UIColor blackColor];
+        _lable.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:_lable];
     }
     return self;
@@ -30,10 +31,9 @@
     [super layoutSubviews];
     
     
-    _imageView1.frame =  CGRectMake(20, 10, self.contentView.bounds.size.width/3, self.contentView.bounds.size.height-20);
+    _imageView1.frame =  CGRectMake(10, 10, self.frame.size.width/3, self.frame.size.height-20);
     
-    
-    _lable.frame = CGRectMake(self.contentView.bounds.size.width/3+30, 10, self.contentView.bounds.size.width/3*2-30, self.contentView.bounds.size.height-20);
+    _lable.frame = CGRectMake(self.contentView.bounds.size.width/3+20, 10, self.contentView.bounds.size.width- self.frame.size.width/3 -30, self.imageView.bounds.size.height);
     _lable.numberOfLines = 0;
     [_lable sizeToFit];
 }

@@ -24,19 +24,15 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.itemSize = CGSizeMake((self.bounds.size.width-30)/2, (self.bounds.size.width-10)/2);
         
-        layout.headerReferenceSize = CGSizeMake(self.bounds.size.width, 200);
         
-        self.collectionVeiw = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout:layout];
+        self.collectionVeiw = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
         self.collectionVeiw.delegate = self;
         self.collectionVeiw.dataSource = self;
         layout.minimumInteritemSpacing = 0;
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         [self.collectionVeiw registerClass:[MainVideoCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        
         self.collectionVeiw.backgroundColor = [UIColor whiteColor];
-        
-    
-        [self.collectionVeiw registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
-        
         [self addSubview:self.collectionVeiw];
         
          
@@ -66,16 +62,15 @@
 
     
 }
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    
-    UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
-    header.backgroundColor = [UIColor yellowColor];
-    
-    return header;
-    
-    
-}
+//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
+//    
+//    return header;
+//    
+//    
+//}
 
 
 

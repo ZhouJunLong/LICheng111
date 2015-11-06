@@ -13,15 +13,20 @@
 #import "VideoListViewController.h"
 #import "MyInfoViewController.h"
 #import "PlayerViewController.h"
+#import "AudioStreamer.h"
+#import <AVFoundation/AVFoundation.h>
 
 #import "UIColor+CustomColor.h"
 @interface ViewController ()
 
 @property (nonatomic,strong)UIImageView *imageView;
+@property (nonatomic, strong)UIViewController *bofang;
+@property (nonatomic,strong)NSString *picString;
 
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +44,7 @@
     UINavigationController *newsNC = [[UINavigationController alloc] initWithRootViewController:newsVC];
     
     // 播放器 controller
-    UIViewController *bofang = [[UIViewController alloc] init];
+    self.bofang = [[UIViewController alloc] init];
     
     // 视频 controller
     VideoListViewController *videoVC = [[VideoListViewController alloc] init];
@@ -53,10 +58,11 @@
     myInfoVC.tabBarItem.image = [UIImage imageNamed:@"wode@2x"];
     UINavigationController *myInfoNC = [[UINavigationController alloc] initWithRootViewController:myInfoVC];
     
-    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bgnav"]forBarMetrics:(UIBarMetricsDefault)];
+
     
     // tabbarController
-    self.viewControllers = @[radioNC, newsNC,bofang,videoNC, myInfoNC];
+    self.viewControllers = @[radioNC, newsNC,_bofang,videoNC, myInfoNC];
     
     
     // 播放器 背景图片
@@ -75,38 +81,93 @@
     _imageView= [[UIImageView alloc ] init];
     _imageView.frame = CGRectMake(4, 4, 50, 50);
     _imageView.layer.cornerRadius = 50 / 2.f;
-    _imageView.layer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"text.jpg"]].CGColor;
+    _imageView.clipsToBounds = YES;
+    
     [button addSubview:_imageView];
     
     // 旋转动画
-    [self animation:_imageView];
+  
     
     // 图标点击后的颜色
     self.tabBar.tintColor = [UIColor darkOrangeColor];
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(action:) name:@"notificationName1" object:nil];
+    
+    
+    //通知2.改变动画
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(action2:) name:@"pause" object:nil];
+    [button addSubview:_imageView];
 
+    
+}
+
+//通知1事件
+
+-(void)action:(NSNotification *)object{
+    
+    self.imageView.layer.speed = 0.5;
+    
+    self.picString = object.object ;
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:self.picString] placeholderImage:nil];
+    
+    [self animation:self.imageView isRotate:YES];
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+//通知2事件
+-(void)action2:(NSNotification *)object{
+    
+    
+    
+    
+    _imageView.layer.speed = 0;
+    
+    
+    
 }
 
 #pragma mark -- 模态推出播放器视图
 -(void)player:(UIButton *)button
 {
-    PlayerViewController *play = [[PlayerViewController alloc] init];
-    [self presentViewController:play animated:YES completion:nil];
-    NSLog(@"%@",self.navigationController);
+    PlayerViewController *playVC = [PlayerViewController sharedController];
+
+    UINavigationController *playNC = [[UINavigationController alloc]initWithRootViewController: playVC];
+
+    
+    [self presentViewController:playNC animated:YES completion:nil];
 }
+
+
 
 #pragma mark -- 旋转动画
-static int k = 10;
--(void)animation:(UIImageView *)imageView{
+-(void)animation:(UIImageView *)imageView isRotate:(BOOL)isrotate{
     
-    [UIView animateWithDuration:0.1 animations:^{
-        CGAffineTransform angle = CGAffineTransformMakeRotation(k*M_PI/180);
-        imageView.transform = angle;
-    } completion:^(BOOL finished) {
-        k+=10;
-        [self animation:self.imageView];
-    }];
+    if (isrotate == YES) {
+        imageView.layer.speed = 0.5;
+        
+        [UIView animateWithDuration:0.02 animations:^{
+            //基于上一次状态
+            _imageView.transform = CGAffineTransformRotate(_imageView.transform, M_PI/180);
+        } completion:^(BOOL finished) {
+            
+            [self animation:self.imageView isRotate:YES];
+        }];
+    }else{
+        
+    }
+    
+    
+    
+    
 }
-
 
 
 

@@ -26,15 +26,14 @@
         //        self.imageV.layer.cornerRadius = self.contentView.bounds.size.width*2/6;
         [self addSubview:self.imageV];
         self.imageV.frame = CGRectMake(self.bounds.size.width/6, self.bounds.size.height/6, self.bounds.size.width*2/3, self.bounds.size.width*2/3);
-        self.imageV.layer.cornerRadius = self.bounds.size.width*2/6;
-       // self.imageV.layer.borderWidth = 3;
-        self.imageV.layer.borderColor = [UIColor tiankonglan].CGColor;
+        self.imageV.layer.cornerRadius = self.bounds.size.width*2/6.f;
+        self.imageV.layer.borderWidth = 3;
+        self.imageV.layer.borderColor = [UIColor silverColor].CGColor;
         self.imageV.clipsToBounds = YES;
         //self.imageV.backgroundColor = [UIColor redColor];
         // 旋转动画
         [self animation:_imageV];
 
-        
 //        // 旋转动画
 //        [self animation:_imageV];
         
@@ -232,7 +231,7 @@
 //static int k = 1;
 -(void)animation:(UIImageView *)imageView{
     
-    
+//     imageView.layer.speed = 1;
     [UIView animateWithDuration:0.01 animations:^{
         //基于上一次状态
         imageView.transform = CGAffineTransformRotate(imageView.transform, M_PI/180);

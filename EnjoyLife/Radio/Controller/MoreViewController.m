@@ -15,7 +15,7 @@
 
 #import "SortListModel.h"
 #import "MJRefresh.h"
-#import "sortDetailController.h"
+#import "SortDetailViewController.h"
 
 
 @interface MoreViewController ()<UITableViewDelegate>
@@ -39,7 +39,7 @@
     
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"最火", @"最近更新", @"经典"]];
     seg.selectedSegmentIndex = 0;
-    seg.frame = CGRectMake(0, 66, self.view.bounds.size.width, 30);
+    seg.frame = CGRectMake(0, 0, self.view.bounds.size.width, 30);
     seg.tintColor = [UIColor jinjuse];
     [self.view addSubview:seg];
     
@@ -80,23 +80,24 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    sortDetailController *sortVC =[[ sortDetailController alloc]init];
-    sortVC.sortListModel = self.allArray[indexPath.row];
+    SortDetailViewController *sortVC =[[ SortDetailViewController alloc]init];
+    SortListModel *model = self.allArray[indexPath.row];
+    sortVC.albumId = model.albumId;
     [self.navigationController pushViewController:sortVC animated:YES];
 }
 
 - (void)segChange:(UISegmentedControl *)seg{
     if (seg.selectedSegmentIndex == 0) {
-        [self handle1:@"hot" categoryId:@"2"pageId:1];
+        [self handle1:@"hot" categoryId:self.Aid pageId:1];
         self.segStr = @"hot";
     }
     if (seg.selectedSegmentIndex == 1) {
-         [self handle1:@"recent" categoryId:@"2"pageId:1];
+         [self handle1:@"recent" categoryId:self.Aid pageId:1];
           self.segStr = @"recent";
         
     }
     if (seg.selectedSegmentIndex == 2) {
-        [self handle1:@"mostplay" categoryId:@"2"pageId:1];
+        [self handle1:@"mostplay" categoryId:self.Aid pageId:1];
         self.segStr = @"mostplay";
     }
     
@@ -234,7 +235,7 @@
     
     
     //1. 在这调用请求网络数据方法（刷新数据）
-  [self handle1:self.segStr categoryId:@"2"pageId:1];
+  [self handle1:self.segStr categoryId:self.Aid pageId:1];
     //[self.allArray removeAllObjects];
     
     
@@ -254,7 +255,7 @@
 - (void)footerRereshing
 {
     //1. 拼接口等操作
-    [self handle2:self.segStr categoryId:@"2"pageId:self.allArray.count/20+1];
+    [self handle2:self.segStr categoryId:self.Aid pageId:self.allArray.count/20+1];
    // [self.moreView.listModelArray removeAllObjects];
     
     

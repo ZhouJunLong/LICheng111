@@ -66,31 +66,23 @@ static PlayerViewController *sharedRootController = nil;
     [backButton addTarget:self action:@selector(back:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:backButton];
     
-  
-
-    
-    
-   
-    
-  
-    
-    
-    
-   
-
 }
-
 
 -(void)viewDidAppear:(BOOL)animated{
     
     
     [[LMusicPlay shareLmusicPlay] startPlay];
     
-  self.playView.sortDetailList = self.sortDetailList;
+    self.playView.sortDetailList = self.sortDetailList;
 
     
     
-    
+    if (self.playView.pauseB.alpha == 1 ) {
+        
+        
+        //动画转
+        self.playView.imageV.layer.speed = 1;
+    }
     
     //播放列表
     [self.playView.listB addTarget:self action:@selector(playList:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -282,6 +274,7 @@ static PlayerViewController *sharedRootController = nil;
 
 #pragma mark--播放列表的button事件
 -(void)playList:(UIButton *)button{
+    
     PlayListViewController *playListVC = [[PlayListViewController alloc]init];
     playListVC.sortDetailListModelArray =   self.sortDetailListModelArray;
     

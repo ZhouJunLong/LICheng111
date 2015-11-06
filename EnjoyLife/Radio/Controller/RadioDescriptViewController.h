@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SortDetailTop;
 @interface RadioDescriptViewController : UIViewController
 
+@property (nonatomic, strong)SortDetailTop *detailTop;
 @end

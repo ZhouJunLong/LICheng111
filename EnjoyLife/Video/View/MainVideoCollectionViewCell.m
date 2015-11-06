@@ -20,6 +20,7 @@
         [self.contentView addSubview:_imageView];
         
         _title = [[UILabel alloc]init];
+        _title.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_title];
         
         
@@ -27,22 +28,18 @@
     return self;
 }
 
-
-
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     _imageView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.contentView.bounds.size.height-60);
-    _imageView.backgroundColor = [UIColor redColor];
+    _imageView.backgroundColor = [UIColor grayColor];
     
-    
-    
+
     _title.frame = CGRectMake(0, self.contentView.bounds.size.height-60, self.contentView.bounds.size.width, 40);
+    
     _title.textColor = [UIColor blackColor];
     _title.numberOfLines = 0;
     [_title sizeToFit];
-    
-  
     
 }
 

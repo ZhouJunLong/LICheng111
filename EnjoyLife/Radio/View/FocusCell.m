@@ -10,7 +10,7 @@
 #import "FocusModel.h"
 #import "UIColor+CustomColor.h"
 #import "UIImageView+WebCache.h"
-#import "sortDetailController.h"
+//#import "sortDetailController.h"
 #import "PlayerViewController.h"
 @interface FocusCell()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scroll;
@@ -74,8 +74,7 @@
         [_imageV sd_setImageWithURL:[NSURL URLWithString:self.imagesURLArrays[i]] placeholderImage:nil];
         
         //手势
-        self.tap = [[UITapGestureRecognizer alloc]
- initWithTarget:self action:@selector(tapClick:)];
+        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
         [_imageV addGestureRecognizer:self.tap];
         
         
@@ -109,37 +108,7 @@
 #pragma mark--手势
 - (void)tapClick:(UITapGestureRecognizer *)tap
 {
-    
-    //UIImageView *imageV = [[UIImageView alloc]init];
-    NSLog(@"我点击的是%ld张",tap.view.tag-1000);
-    
-    for (int i = 0; i < self.imagesURLArrays.count; i ++) {
-        if (i == tap.view.tag-1000) {
-        
-            if (i == self.imagesURLArrays.count-1) {
-                self.focusModel = [[FocusModel alloc]init];
-                self.focusModel = self.focusModelArray[0];
-            }else{
-            self.focusModel = [[FocusModel alloc]init];
-            self.focusModel = self.focusModelArray[i];
-            
-            }
 
-        }
-    }
-    
-    
-    
-
-    PlayerViewController *sortVC = [[PlayerViewController alloc]init];
-    sortVC.focusModel = self.focusModel;
-    UINavigationController *sortNC = [[UINavigationController alloc]initWithRootViewController:sortVC];
-    
-    
-    [[self viewController] presentViewController:sortNC animated:YES completion:nil ];
-    
-    
-    
 }
 
 
@@ -249,14 +218,13 @@
 
 
 -(void)setImageArray:(NSMutableArray *)imageArray{
-    _imageArray = imageArray;
-    
-   
+    _imageArray = [NSMutableArray arrayWithArray:imageArray];
 }
 
 -(void)setFocusModelArray:(NSMutableArray *)focusModelArray{
-    _focusModelArray = focusModelArray;
-    //NSLog(@"%@",focusModelArray);
+    
+    _focusModelArray = [NSMutableArray arrayWithArray:focusModelArray];
+
 }
 
 

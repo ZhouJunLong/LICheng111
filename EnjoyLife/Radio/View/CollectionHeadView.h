@@ -10,4 +10,6 @@
 
 @interface CollectionHeadView : UICollectionReusableView
 
+
+@property (nonatomic ,strong)UILabel *label;
 @end

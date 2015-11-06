@@ -12,9 +12,18 @@
 #import "NetHandler.h"
 #import "ScrollModel.h"
 #import "MJRefresh.h"
-@interface VideoListViewController ()<UICollectionViewDelegate>
+#import "UIColor+CustomColor.h"
+#import "PlayerViewController.h"
+#import "AudioStreamer.h"
+#import "LMusicPlay.h"
 
-//@property (nonatomic, strong)Model2 *model2;
+#import "SDCycleScrollView.h"
+
+static NSInteger i = 0;
+
+@interface VideoListViewController ()<UICollectionViewDelegate,SDCycleScrollViewDelegate>
+
+@property (nonatomic ,strong)SDCycleScrollView *cycleScrollView2;
 
 @property (nonatomic, strong)NSMutableArray *modelArray;
 @property (nonatomic, strong)NSMutableArray *modelArray1;
@@ -30,39 +39,25 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
+    self.navigationController.navigationBar.translucent = NO;
+
+    // seg导航
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"娱乐",@"社会",@"原创",@"搞笑",@"历史"]];
-    seg.frame = CGRectMake(0, 64, self.view.bounds.size.width, 30);
+    seg.frame = CGRectMake(0, 0, self.view.bounds.size.width, 30);
     seg.selectedSegmentIndex = 0;
     [seg addTarget:self action:@selector(valuechanged:) forControlEvents:UIControlEventValueChanged];
+    seg.tintColor = [UIColor jinjuse];
     [self.view addSubview:seg];
 
-    
-    _view2 = [[View2 alloc]initWithFrame:CGRectMake(0, 94,self.view.bounds.size.width , self.view.bounds.size.height-94)];
+    // 集合视图
+    _view2 = [[View2 alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height / 3.5 +20,self.view.bounds.size.width , self.view.bounds.size.height-self.view.bounds.size.height / 3.5 - 30 - 70)];
     [self.view addSubview:_view2];
     _view2.collectionVeiw.delegate = self;
+    self.view2.backgroundColor = [UIColor brownColor];
     
-    _scrollVeiw = [[ScrollView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width,200)];
-    [_scrollVeiw.imageView1 sd_setImageWithURL:[NSURL URLWithString:_modelArray[0][@"image"]] placeholderImage:[UIImage imageNamed:@"1.jpg"]];
-    
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]init];
-    [tap1 addTarget:self action:@selector(tap1:)];
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]init];
-    [tap2 addTarget:self action:@selector(tap2:)];
-    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]init];
-    [tap3 addTarget:self action:@selector(tap3:)];
-    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]init];
-    [tap4 addTarget:self action:@selector(tap4:)];
-    _scrollVeiw.imageView1.userInteractionEnabled = YES;
-    [_scrollVeiw.imageView1 addGestureRecognizer:tap1];
-    _scrollVeiw.imageView2.userInteractionEnabled = YES;
-    [_scrollVeiw.imageView2 addGestureRecognizer:tap2];
-    _scrollVeiw.imageView3.userInteractionEnabled = YES;
-    [_scrollVeiw.imageView3 addGestureRecognizer:tap3];
-    _scrollVeiw.imageView4.userInteractionEnabled = YES;
-    [_scrollVeiw.imageView4 addGestureRecognizer:tap4];
-    [self.view2.collectionVeiw addSubview:_scrollVeiw];
+    [self.view addSubview:self.view2];
     self.string = @"100391-0";
-    [self handle];
+
     [self setupRefresh];
     
 }
@@ -70,6 +65,7 @@
 
 -(void)handle
 {
+    // 轮播图
     self.modelArray = [NSMutableArray array];
     [NetHandler getDataWithUrl:[NSString stringWithFormat:@"http://vcsp.ifeng.com/vcsp/appData/recommendGroupByTeamid.do?useType=iPhone&adapterNo=6.6.2&isNotModified=0&channelId=%@",self.string] completion:^(NSData *data){
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
@@ -80,12 +76,11 @@
             [_modelArray addObject:_scrollModel];
         }
         
-        self.scrollVeiw.modelArray = self.modelArray;
-        NSLog(@"%ld",self.scrollVeiw.modelArray.count);
+        [self setUpImageScroll:self.modelArray];
 
     }];
     
-    
+    // 列表
     self.modelArray1 = [NSMutableArray array];
     [NetHandler getDataWithUrl:[NSString stringWithFormat:@"http://vcsp.ifeng.com/vcsp/appData/recommendGroupByTeamid.do?useType=iPhone&adapterNo=6.6.2&isNotModified=0&channelId=%@",self.string] completion:^(NSData *data){
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
@@ -103,59 +98,76 @@
     }];
 }
 
--(void)tap1:(UITapGestureRecognizer *)tap
+
+-(void)setUpImageScroll:(NSMutableArray *)mArr
 {
-    HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
-    self.scrollModel =self.modelArray[0];
-    happyDetail.str =self.scrollModel.guid ;
+    i +=1;
+    NSLog(@"%ld", i);
+    if (i > 0) {
+        [self.cycleScrollView2 removeFromSuperview];
+    }
+    NSMutableArray *url = [NSMutableArray array];
+    NSMutableArray *title = [NSMutableArray array];
     
-    [self.navigationController pushViewController:happyDetail animated:YES];
+    for (NSInteger i= 0; i< mArr.count; i++) {
+        ScrollModel  *model= mArr[i];
+        [url addObject:model.image];
+        [title addObject:model.title];
+        
+    }
     
+    CGFloat newWidth = self.view.bounds.size.width;
+    self.cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 30, newWidth, self.view.bounds.size.height / 3.5) imageURLStringsGroup:nil]; // 模拟网络延时情景
+    self.cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    self.cycleScrollView2.delegate = self;
+    self.cycleScrollView2.titlesGroup = title;
+    self.cycleScrollView2.dotColor = [UIColor jinjuse]; // 自定义分页控件小圆标颜色
+    self.cycleScrollView2.placeholderImage = [UIImage imageNamed:@"placeholder"];
+    [self.view addSubview:self.cycleScrollView2];
     
+
+    //  --- 模拟加载延迟
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.cycleScrollView2.imageURLStringsGroup = url;
+
+    });
+
 }
--(void)tap2:(UITapGestureRecognizer *)tap
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
+#import "LMusicPlay.h"
+    [[LMusicPlay shareLmusicPlay] stopPlay];
+    
     HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
-    self.scrollModel =self.modelArray[1];
-    happyDetail.str =self.scrollModel.guid ;
-    [self.navigationController pushViewController:happyDetail animated:YES];
-}
--(void)tap3:(UITapGestureRecognizer *)tap
-{
-    HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
-    self.scrollModel =self.modelArray[2];
-    happyDetail.str =self.scrollModel.guid ;
-        [self.navigationController pushViewController:happyDetail animated:YES];
-}
--(void)tap4:(UITapGestureRecognizer *)tap
-{
-    HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
-    self.scrollModel =self.modelArray[2];
-    happyDetail.str =self.scrollModel.guid ;
+    self.model2 =self.modelArray[index];
+    happyDetail.str =self.model2.guid ;
     [self.navigationController pushViewController:happyDetail animated:YES];
 }
 
 -(void)valuechanged:(UISegmentedControl *)seg
 {
+//    [self.cycleScrollView2 removeFromSuperview];
     if (seg.selectedSegmentIndex == 1) {
         self.string =@"100413-0";
-        [self handle];
+        [self setupRefresh];
+
     }
     if (seg.selectedSegmentIndex == 2) {
         self.string =@"127952-0";
-        [self handle];
+        [self setupRefresh];
     }
     if (seg.selectedSegmentIndex == 3) {
         self.string =@"100473-0";
-        [self handle];
+        [self setupRefresh];
     }
     if (seg.selectedSegmentIndex == 4) {
         self.string =@"100384-0";
-        [self handle];
+        [self setupRefresh];
     }
     if (seg.selectedSegmentIndex == 0) {
         self.string =@"100391-0";
-        [self handle];
+        [self setupRefresh];
     }
 }
 
@@ -163,6 +175,10 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+//    PlayerViewController *player = [PlayerViewController playInterface];
+//    [player.audio pause];
+    [[LMusicPlay shareLmusicPlay] stopPlay];
+    
     if (collectionView == self.view2.collectionVeiw) {
         HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
         self.model2 =self.modelArray1[indexPath.item];
@@ -180,15 +196,14 @@
 }
 - (void)headerRereshing
 {
+    [self handle];
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC) ), dispatch_get_main_queue(), ^{
         [self.view2.collectionVeiw reloadData];
         [self.view2.collectionVeiw headerEndRefreshing];
     });
 
 }
-
-
-
 
 
 

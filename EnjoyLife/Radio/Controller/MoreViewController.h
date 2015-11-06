@@ -10,5 +10,5 @@
 @class TitleModel;
 @interface MoreViewController : UIViewController
 @property (nonatomic,strong)TitleModel *titleModel;
-
+@property (nonatomic, strong)NSString *Aid;
 @end
