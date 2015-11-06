@@ -15,7 +15,6 @@
 #import "ButtonScrollView.h"
 #import "MJRefresh.h"
 #import "NewsDetailViewController.h"
-#import "WZSnakeHUD.h"
 
 #define kWidth  [UIScreen mainScreen].bounds.size.width
 #define kHeight  [UIScreen mainScreen].bounds.size.height
@@ -131,8 +130,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [WZSnakeHUD show:@"闻 • 加载"];
     
 //    self.ButtonScrollArr = [NSMutableArray array];
     //导航栏控制器的透明度
@@ -408,9 +405,7 @@
         self.modelArr = [NSMutableArray array];
         NSDictionary *rootDic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         
-        
         NSMutableArray *arr = [rootDic objectForKey:name];
-      
         for (NSDictionary *dic in arr) {
             
             NewsModel *newsModel = [[NewsModel alloc] init];
@@ -423,11 +418,11 @@
         
         self.newsListView.modelArr = self.allModelArr;
         
-
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        }];
+        NSLog(@"错误信息: %@", error);
+    }];
 
 }
 
@@ -447,10 +442,6 @@
         self.modelArr = [NSMutableArray array];
         
         NSMutableArray *arr = [rootDic objectForKey:name];
-        NSLog(@"%@", arr);
-        if (arr.count != 0) {
-            [WZSnakeHUD hide];
-        }
         for (NSDictionary *dic in arr) {
             
             NewsModel *newsModel = [[NewsModel alloc] init];
@@ -467,8 +458,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [a show];
+        NSLog(@"错误信息: %@", error);
     }];
 
 }

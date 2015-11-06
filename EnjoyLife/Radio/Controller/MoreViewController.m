@@ -22,6 +22,7 @@
 @property (nonatomic,strong)NSMutableArray *listModelArray;
 @property (nonatomic,strong)MoreView *moreView;
 
+
 //在seg点击中给calcStr赋值
 @property (nonatomic,strong)NSString *segStr;
 
@@ -49,7 +50,7 @@
     seg.selectedSegmentIndex = 0;
     //self.view.backgroundColor = [UIColor redColor];
     
-    self.moreView = [[MoreView alloc]initWithFrame:CGRectMake(0, seg.frame.origin.y+seg.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-seg.frame.origin.y-seg.bounds.size.height-100)];
+    self.moreView = [[MoreView alloc]initWithFrame:CGRectMake(0, seg.frame.origin.y+seg.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-seg.frame.origin.y-seg.bounds.size.height-66)];
     [self.view addSubview:self.moreView];
     
     
@@ -63,6 +64,15 @@
     self.allArray = [NSMutableArray array];
     
     
+   
+    //calcStr
+    //hot最热
+    //recent最近更新
+    //mostplay经典
+    //categoryId 3有声书,2音乐,4综艺,20校园,22旅游,23电影
+    //pageId 页数
+   // [self handle1:@"hot" categoryId:@"2"pageId:1];
+   
     [self setupRefresh];
     self.moreView.tableView.delegate = self;
    
@@ -126,8 +136,15 @@
             
             
         }
+        
+        
+        
+        //self.moreView.listModelArray = self.allArray;
         self.moreView.listModelArray = self.listModelArray;
         self.allArray = self.listModelArray;
+       // NSLog(@"%ld",self.allArray.count);
+        
+        //
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
@@ -141,7 +158,7 @@
 
 //下拉加载的解析
 -(void)handle2:(NSString *)calcStr categoryId:(NSString*)categoryId pageId:(NSInteger)pageId{
-
+    //self.allArray = [NSMutableArray array];
     self.listModelArray = [NSMutableArray array];
     
     NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v1/category/album?calcDimension=%@&categoryId=%@&device=iPhone&pageId=%ld&pageSize=20&status=0&tagName=%@",calcStr,categoryId,pageId,self.titleModel.tagName];
@@ -175,6 +192,10 @@
         
         
         self.moreView.listModelArray = self.allArray;
+        //self.moreView.listModelArray = self.listModelArray;
+       // NSLog(@"%ld",self.allArray.count);
+        
+        //
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
@@ -211,9 +232,15 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
+    //NSInteger i =1;
+    
+    
     //1. 在这调用请求网络数据方法（刷新数据）
   [self handle1:self.segStr categoryId:self.Aid pageId:1];
-
+    //[self.allArray removeAllObjects];
+    
+    
+    
     //2. 2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
@@ -230,6 +257,7 @@
 {
     //1. 拼接口等操作
     [self handle2:self.segStr categoryId:self.Aid pageId:self.allArray.count/20+1];
+    
    // [self.moreView.listModelArray removeAllObjects];
     
     

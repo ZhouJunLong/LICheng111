@@ -192,6 +192,7 @@ typedef NS_ENUM(NSInteger, LineDirection) {
             }
             case LineDirectionStop:
             {
+                //NSLog(@"Done");
             }
                 break;
         }

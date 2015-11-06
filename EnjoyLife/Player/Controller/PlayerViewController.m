@@ -150,11 +150,7 @@ static PlayerViewController *sharedRootController = nil;
     
 
     //背景模糊效果
-    
-//    UIBlurEffectStyleExtraLight,
-//    UIBlurEffectStyleLight,
-//    UIBlurEffectStyleDark
-    UIBlurEffect *beffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIBlurEffect *beffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     
     UIVisualEffectView *view = [[UIVisualEffectView alloc]initWithEffect:beffect];
     
@@ -289,6 +285,7 @@ static PlayerViewController *sharedRootController = nil;
     
     [[LMusicPlay shareLmusicPlay] stopPlay];
     
+    
 
     
     if (self.musicNumber == 0) {
@@ -367,6 +364,8 @@ static PlayerViewController *sharedRootController = nil;
         //2.设置动画
         //动画持续的时间,重复几次,是否翻转等等
         [UIView setAnimationDuration:5];//动画持续时间
+        //[UIView setAnimationRepeatCount:2];//重复次数
+        //[UIView setAnimationRepeatAutoreverses:YES];//反转
         [UIView setAnimationDelegate:self];//设置代理
     
         //代理触发的两个方法
@@ -392,7 +391,11 @@ static PlayerViewController *sharedRootController = nil;
 //动画开始前执行的操作
 
 -(void)animationWillStart:(NSString *)animationID context:(void *)context{
-
+    
+    
+    //NSLog(@"动画开始");
+    //self.titleLabel.backgroundColor = [UIColor yellowColor];
+    
 }
 
 //动画结束后执行操作

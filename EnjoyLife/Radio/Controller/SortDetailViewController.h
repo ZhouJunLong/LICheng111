@@ -12,4 +12,5 @@
 
 @property (nonatomic, strong)SortDetailList *sortListModel;
 @property (nonatomic,assign)NSInteger albumId;
+@property (nonatomic,assign)NSInteger jiShu;
 @end
