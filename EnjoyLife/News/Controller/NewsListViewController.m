@@ -447,7 +447,7 @@
         self.modelArr = [NSMutableArray array];
         
         NSMutableArray *arr = [rootDic objectForKey:name];
-        NSLog(@"%@", arr);
+        
         if (arr.count != 0) {
             [WZSnakeHUD hide];
         }
