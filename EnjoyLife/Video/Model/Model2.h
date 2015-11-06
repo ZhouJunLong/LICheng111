@@ -10,4 +10,12 @@
 
 @interface Model2 : UIView
 
+
+@property (nonatomic, strong)NSString *title;
+
+@property (nonatomic, strong)NSString *image;
+
+@property (nonatomic, strong)NSString *guid;
+
+
 @end

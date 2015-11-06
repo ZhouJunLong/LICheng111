@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Model2.h"
 
 @interface View2 : UIView
+
+
+
+
+@property (nonatomic, strong)UICollectionView *collectionVeiw;
+
+
+
+
+
+@property (nonatomic, strong)NSMutableArray *modelArray;
+@property (nonatomic, strong)NSMutableArray *modelArray1;
+
+
+
 
 @end

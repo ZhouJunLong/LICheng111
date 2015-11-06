@@ -10,12 +10,29 @@
 
 @implementation Model2
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+
+-(void)setValue:(id)value forKey:(NSString *)key
+{
+    [super setValue:value forKey:key];
+    if ([key isEqualToString:@"memberItem"]) {
+        NSDictionary *dic = value;
+        _guid = [dic objectForKey:@"guid"];
+    }
+    
+    
+    
+    
 }
-*/
+
+
+
+
+
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
 
 @end
