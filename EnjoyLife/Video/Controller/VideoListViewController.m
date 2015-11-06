@@ -16,7 +16,6 @@
 #import "PlayerViewController.h"
 #import "AudioStreamer.h"
 #import "LMusicPlay.h"
-#import "WZSnakeHUD.h"
 
 #import "SDCycleScrollView.h"
 
@@ -37,14 +36,13 @@ static NSInteger i = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [WZSnakeHUD show:@"视 • 加载"];
     self.view.backgroundColor = [UIColor whiteColor];
     
     
     self.navigationController.navigationBar.translucent = NO;
 
     // seg导航
-    UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"社会",@"娱乐",@"原创",@"搞笑",@"历史"]];
+    UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"娱乐",@"社会",@"原创",@"搞笑",@"历史"]];
     seg.frame = CGRectMake(0, 0, self.view.bounds.size.width, 30);
     seg.selectedSegmentIndex = 0;
     [seg addTarget:self action:@selector(valuechanged:) forControlEvents:UIControlEventValueChanged];
@@ -58,7 +56,7 @@ static NSInteger i = 0;
     self.view2.backgroundColor = [UIColor brownColor];
     
     [self.view addSubview:self.view2];
-    self.string = @"100413-0";
+    self.string = @"100391-0";
 
     [self setupRefresh];
     
@@ -69,7 +67,6 @@ static NSInteger i = 0;
 {
     // 轮播图
     self.modelArray = [NSMutableArray array];
-    self.modelArray1 = [NSMutableArray array];
     [NetHandler getDataWithUrl:[NSString stringWithFormat:@"http://vcsp.ifeng.com/vcsp/appData/recommendGroupByTeamid.do?useType=iPhone&adapterNo=6.6.2&isNotModified=0&channelId=%@",self.string] completion:^(NSData *data){
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSArray *array = [dic objectForKey:@"header"];
@@ -80,13 +77,15 @@ static NSInteger i = 0;
         }
         
         [self setUpImageScroll:self.modelArray];
-        
-        NSArray *array1 = [dic objectForKey:@"bodyList"];
-        
-        if (array.count != 0) {
-            [WZSnakeHUD hide];
-        }
-        for (NSDictionary *dic1 in array1) {
+
+    }];
+    
+    // 列表
+    self.modelArray1 = [NSMutableArray array];
+    [NetHandler getDataWithUrl:[NSString stringWithFormat:@"http://vcsp.ifeng.com/vcsp/appData/recommendGroupByTeamid.do?useType=iPhone&adapterNo=6.6.2&isNotModified=0&channelId=%@",self.string] completion:^(NSData *data){
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSArray *array = [dic objectForKey:@"bodyList"];
+        for (NSDictionary *dic1 in array) {
             NSArray *arr = [dic1 objectForKey:@"videoList"];
             for (NSDictionary *dic2 in arr) {
                 _model2 = [[Model2 alloc]init];
@@ -96,16 +95,14 @@ static NSInteger i = 0;
             
         }
         self.view2.modelArray = self.modelArray1;
-
     }];
- 
 }
 
 
 -(void)setUpImageScroll:(NSMutableArray *)mArr
 {
     i +=1;
-
+   // NSLog(@"%ld", i);
     if (i > 0) {
         [self.cycleScrollView2 removeFromSuperview];
     }
@@ -139,6 +136,7 @@ static NSInteger i = 0;
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
+#import "LMusicPlay.h"
     [[LMusicPlay shareLmusicPlay] stopPlay];
     
     HappyDetailViewController *happyDetail = [[HappyDetailViewController alloc]init];
@@ -151,8 +149,7 @@ static NSInteger i = 0;
 {
 //    [self.cycleScrollView2 removeFromSuperview];
     if (seg.selectedSegmentIndex == 1) {
-        self.string =@"100391-0";
-
+        self.string =@"100413-0";
         [self setupRefresh];
 
     }
@@ -169,7 +166,7 @@ static NSInteger i = 0;
         [self setupRefresh];
     }
     if (seg.selectedSegmentIndex == 0) {
-        self.string =@"100413-0";
+        self.string =@"100391-0";
         [self setupRefresh];
     }
 }

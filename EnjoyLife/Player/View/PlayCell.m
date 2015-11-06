@@ -230,6 +230,11 @@
     
     [self.imageLagerV addSubview:view];
     
+    [self.player initWithURL:[NSURL URLWithString:playDetailModel.playUrl64]];
+   // NSLog(@"%@",playDetailModel.playUrl64);
+   
+   
+    
    NSTimeInterval totalTimer = playDetailModel.duration;
 
    NSTimeInterval totalM = totalTimer/60;

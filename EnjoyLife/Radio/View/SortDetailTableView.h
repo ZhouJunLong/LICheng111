@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong)NSMutableArray *detailArr;
 @property (nonatomic, strong)UITableView *tableV;
-
+@property (nonatomic,assign)NSInteger jiShu;
 @end

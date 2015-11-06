@@ -43,7 +43,7 @@
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return  [NSString stringWithFormat:@"  共%ld集", self.detailArr.count];
+    return  [NSString stringWithFormat:@"  共%ld集", self.jiShu];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

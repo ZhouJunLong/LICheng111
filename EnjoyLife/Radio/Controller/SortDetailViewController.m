@@ -29,6 +29,8 @@
 @property (nonatomic,strong)SortDetailTopView *topView;
 @property (nonatomic, strong)SortDetailTableView *tableV;
 @property (nonatomic, strong)NSMutableArray *detailArr;
+
+@property (nonatomic,strong)NSMutableArray *allArray;
 @end
 
 @implementation SortDetailViewController
@@ -41,10 +43,19 @@
     
     // 隐藏 tabbar
     [self hideTabBar];
+    
+    //开辟空间
+    self.allArray = [NSMutableArray array];
 }
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     
     // 背景颜色
     self.view.backgroundColor = [UIColor whiteSmokeColor];
@@ -62,6 +73,7 @@
     // 下部分
     self.tableV = [[SortDetailTableView alloc] initWithFrame:(CGRectMake(0, self.topView.frame.origin.y +self.topView.bounds.size.height +45, self.view.bounds.size.width, self.view.bounds.size.height - self.topView.bounds.size.height - 45))];
     self.tableV.tableV.delegate = self;
+    self.tableV.jiShu = self.jiShu;
     [self.view addSubview:self.tableV];
     
     
@@ -76,8 +88,12 @@
     
     [self.topView.desB addTarget:self action:@selector(desAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    [self handleTop];
+    
+ 
+    
     [self setupRefresh];
+    [self handleTop];
+    
     
 }
 #pragma mark -- 电台描述页面
@@ -92,12 +108,16 @@
 }
 
 
+
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SortDetailList *detail = self.detailArr[indexPath.row];
-    CGFloat height = self.view.bounds.size.width/ 5.6 +  [self getHeight:16 data:detail.title width:self.view.bounds.size.width - self.view.bounds.size.width/ 5.6 - 50];
+   // SortDetailList *detail = self.detailArr[indexPath.row];
+   // CGFloat height = self.view.bounds.size.width/ 5.6 +  [self getHeight:16 data:detail.title width:self.view.bounds.size.width - self.view.bounds.size.width/ 5.6 - 50];
     
-    return height;
+    //return height;
+    return 110;
     
 }
 
@@ -140,18 +160,16 @@
 #pragma mark -- 数据解析
 -(void)handleTop
 {
+    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
+  
     
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer.timeoutInterval = 15;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
-    
-    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
-    
-    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
+    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *html = operation.responseString;
+        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
         NSDictionary *dic = [rootDic objectForKey:@"album"];
         
         SortDetailTop *detailTop = [[SortDetailTop alloc] init];
@@ -159,47 +177,104 @@
         
         // 赋值
         self.topView.detailTop = detailTop;
-
+        //NSLog(@"%@", self.topView.detailTop);
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [a show];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
     }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
+    
 }
 
+//上拉刷新的解析
 #pragma mark -- 数据解析
 -(void)handleTableView
 {
+self.detailArr = [NSMutableArray array];
+    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
     
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer.timeoutInterval = 15;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
-    
-    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
-    
-    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
+    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *html = operation.responseString;
+        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
         NSDictionary *dic = [rootDic objectForKey:@"tracks"];
         NSArray *arr = [dic objectForKey:@"list"];
-        
-        self.detailArr = [NSMutableArray array];
+
+
         for (NSDictionary *dic in arr) {
             SortDetailList *model = [[SortDetailList alloc] init];
             [model setValuesForKeysWithDictionary:dic];
             [self.detailArr addObject:model];
         }
-        self.tableV.detailArr = self.detailArr;
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        self.allArray = self.detailArr;
+        self.tableV.detailArr = self.allArray;
+        //NSLog(@"%ld",self.allArray.count);
         
-        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [a show];
+        
+       // NSLog(@"%@", self.tableV.detailArr);
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
     }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
+    
+    
+    
 }
+
+//下拉加载的解析
+#pragma mark -- 数据解析
+-(void)handleTableView1:(NSInteger)pageId
+{
+    self.detailArr = [NSMutableArray array];
+    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/%ld/20?device=iPhone", self.albumId,pageId];
+    
+    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *html = operation.responseString;
+        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+        NSDictionary *dic = [rootDic objectForKey:@"tracks"];
+        NSArray *arr = [dic objectForKey:@"list"];
+        
+        
+        for (NSDictionary *dic in arr) {
+            SortDetailList *model = [[SortDetailList alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            [self.detailArr addObject:model];
+        }
+        
+        
+        
+        
+        
+        
+        [self.allArray addObjectsFromArray:self.detailArr];
+        
+        
+        self.tableV.detailArr = self.allArray;
+        
+       NSLog(@"%ld",self.allArray.count);
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:operation];
+    
+    
+    
+}
+
+
 
 #pragma mark -- 返回按钮
 - (void)back
@@ -288,10 +363,16 @@
 - (void)footerRereshing
 {
     //1. 拼接口等操作
-    
+    if (self.allArray.count != self.jiShu) {
+        
+        [self handleTableView1:self.allArray.count/20+1];
+    }else{
+        
+    }
+   
     
     // 请求加载数据
-    [self handleTableView];
+   // [self handleTableView];
     
     
     // 2.2秒后刷新表格UI

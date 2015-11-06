@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A017FDD1BEC83DB00FFCBA9 /* soucang.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A017FDC1BEC83DB00FFCBA9 /* soucang.png */; };
 		5A0FFCFF1BEAE7A600D6CD39 /* HappyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FFCE41BEAE7A600D6CD39 /* HappyDetailViewController.m */; };
 		5A0FFD001BEAE7A600D6CD39 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FFCE61BEAE7A600D6CD39 /* VideoListViewController.m */; };
 		5A0FFD011BEAE7A600D6CD39 /* Model2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FFCE91BEAE7A600D6CD39 /* Model2.m */; };
@@ -190,7 +189,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A017FDC1BEC83DB00FFCBA9 /* soucang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soucang.png; sourceTree = "<group>"; };
 		5A0FFCE31BEAE7A600D6CD39 /* HappyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HappyDetailViewController.h; sourceTree = "<group>"; };
 		5A0FFCE41BEAE7A600D6CD39 /* HappyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HappyDetailViewController.m; sourceTree = "<group>"; };
 		5A0FFCE51BEAE7A600D6CD39 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
@@ -744,7 +742,6 @@
 		5AF4101C1BEC4FA900E8062D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5A017FDC1BEC83DB00FFCBA9 /* soucang.png */,
 				5AF4101D1BEC4FA900E8062D /* 3.png */,
 				5AF4101E1BEC4FA900E8062D /* back.png */,
 				5AF4101F1BEC4FA900E8062D /* bgnav.png */,
@@ -1256,7 +1253,6 @@
 				5AF4105C1BEC4FA900E8062D /* yuanniubofang@2x.png in Resources */,
 				5AF410501BEC4FA900E8062D /* shijian@2x.png in Resources */,
 				5AF410571BEC4FA900E8062D /* underline2.png in Resources */,
-				5A017FDD1BEC83DB00FFCBA9 /* soucang.png in Resources */,
 				5AF4104D1BEC4FA900E8062D /* jishu.png in Resources */,
 				5AF4104F1BEC4FA900E8062D /* pause.png in Resources */,
 				5AF410461BEC4FA900E8062D /* bgnav.png in Resources */,
