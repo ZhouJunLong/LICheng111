@@ -156,7 +156,7 @@
         
         // 赋值
         self.topView.detailTop = detailTop;
-        NSLog(@"%@", self.topView.detailTop);
+        
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);

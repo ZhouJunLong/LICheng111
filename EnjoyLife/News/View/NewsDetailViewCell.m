@@ -21,24 +21,18 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, kWidth - 20, 30)];
-        self.titleLabel.font = [UIFont systemFontOfSize:24];
-        
+        self.titleLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.titleLabel];
         
-        self.sourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10, self.frame.size.width / 4, 20)];
-        self.sourceLabel.font = [UIFont systemFontOfSize:14];
-  
+        self.sourceLabel = [[UILabel alloc] init];
+        
         [self.contentView addSubview:self.sourceLabel];
         
-        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.sourceLabel.frame.origin.x + self.sourceLabel.frame.size.width + 10, self.sourceLabel.frame.origin.y, self.frame.size.width/2, self.sourceLabel.frame.size.height)];
-        self.timeLabel.font= [UIFont systemFontOfSize:14];
-      
+        self.timeLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.timeLabel];
         
-        self.digestLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.timeLabel.frame.origin.x, self.timeLabel.frame.origin.y +self.timeLabel.frame.size.height + 5, self.bounds.size.width / 2, self.timeLabel.frame.size.height)];
-        self.digestLabel.font = [UIFont systemFontOfSize:14];
-       
+        self.digestLabel = [[UILabel alloc] init];
+    
         [self.contentView addSubview:self.digestLabel];
         
         self.BodyLabel = [[UILabel alloc] init];
@@ -53,11 +47,38 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    //图片
+    self.titleLabel.frame = CGRectMake(10, 10, kWidth - 20, 30);
+    self.titleLabel.font = [UIFont systemFontOfSize:24];
     
+    self.sourceLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10, self.frame.size.width / 4, 20);
+    self.sourceLabel.font = [UIFont systemFontOfSize:14];
+    
+    self.timeLabel.frame = CGRectMake(self.sourceLabel.frame.origin.x + self.sourceLabel.frame.size.width + 10, self.sourceLabel.frame.origin.y, self.frame.size.width/2, self.sourceLabel.frame.size.height);
+    self.timeLabel.font= [UIFont systemFontOfSize:14];
+    //图片
+
+    self.digestLabel.frame = CGRectMake(self.timeLabel.frame.origin.x, self.timeLabel.frame.origin.y +self.timeLabel.frame.size.height + 5, self.bounds.size.width / 2, self.timeLabel.frame.size.height);
+    self.digestLabel.font = [UIFont systemFontOfSize:14];
     self.height = self.digestLabel.frame.origin.y;
-    if (self.newsDetailModel.img.count) {
-        for (int i = 0; i < self.newsDetailModel.img.count; i++) {
+    
+    
+    [self.BodyLabel sizeToFit];
+    
+}
+
+
+
+- (void)setNewsDetailModel:(NewsDetailModel *)newsDetailModel{
+    _newsDetailModel = newsDetailModel;
+
+    self.titleLabel.text = newsDetailModel.Title;
+    self.sourceLabel.text = newsDetailModel.source;
+    self.timeLabel.text = newsDetailModel.ptime;
+    self.digestLabel.text = newsDetailModel.digest;
+    
+    NSInteger count = self.newsDetailModel.img.count;
+    if (count !=0) {
+        for (int i = 0; i < count; i++) {
             
             NSString *length = [self.newsDetailModel.img[i] objectForKey:@"pixel"];
             NSArray *arr = [length componentsSeparatedByString:@"*"];
@@ -78,24 +99,11 @@
             
         }
         
-        
     }
     self.BodyLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.height, kWidth - 20, 1000);
     
-    [self.BodyLabel sizeToFit];
-}
-
-
-
-- (void)setNewsDetailModel:(NewsDetailModel *)newsDetailModel{
-    _newsDetailModel = newsDetailModel;
-
-    self.titleLabel.text = newsDetailModel.Title;
-    self.sourceLabel.text = newsDetailModel.source;
-    self.timeLabel.text = newsDetailModel.ptime;
-    self.digestLabel.text = newsDetailModel.digest;
     
-    
+
 
 }
 
