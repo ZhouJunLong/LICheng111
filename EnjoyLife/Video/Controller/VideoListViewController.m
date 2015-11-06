@@ -105,6 +105,7 @@ static NSInteger i = 0;
 -(void)setUpImageScroll:(NSMutableArray *)mArr
 {
     i +=1;
+
     if (i > 0) {
         [self.cycleScrollView2 removeFromSuperview];
     }

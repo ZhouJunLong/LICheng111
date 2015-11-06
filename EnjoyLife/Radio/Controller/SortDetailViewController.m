@@ -159,6 +159,7 @@
         
         // 赋值
         self.topView.detailTop = detailTop;
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

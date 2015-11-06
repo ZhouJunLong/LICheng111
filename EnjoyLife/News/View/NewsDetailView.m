@@ -67,7 +67,7 @@
             }
         }
     }
-
+    
     return rect.size.height + 220 + self.imageHeight + self.newsDetailModel.img.count * 10;
     
     

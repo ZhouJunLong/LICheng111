@@ -37,6 +37,7 @@
 
 -(void)button:(UIButton *)button
 {
+
     PlayerViewController *play = [[PlayerViewController alloc] init];
     [self.bar.navigationController presentViewController:play animated:YES completion:nil];
 }
