@@ -57,10 +57,7 @@
     [self.radioListView.button7 addTarget:self action:@selector(classList:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.radioListView.button8 addTarget:self action:@selector(classList:) forControlEvents:(UIControlEventTouchUpInside)];
 
-    
 
-//    self.arr = @[[self handle:@"3"], [self handle:@"2"]];
-//    NSLog(@"%@",self.arr);
     
     
 }

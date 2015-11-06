@@ -54,6 +54,16 @@
         
         cell = [[SortListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"SortList"];
     }
+    
+    
+    for (UIView *vie in [cell subviews]) {
+        
+        if ([vie isKindOfClass:[UIImageView class]]) {
+        
+            UIImageView *imageV = (UIImageView *)vie;
+            NSLog(@"%@", imageV);
+        }
+    }
     // 赋值
     cell.sortModel = self.array[indexPath.row];
 //    cell.backgroundColor = [UIColor brownColor];

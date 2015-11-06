@@ -151,6 +151,7 @@
 
         self.titleLabel = [[UILabel alloc]init];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.font = [UIFont systemFontOfSize:18];
         [self addSubview:self.titleLabel];
         
         
@@ -218,7 +219,7 @@
     
     
     //标题
-    self.titleLabel.frame = CGRectMake(self.bounds.size.width/6, 20, self.bounds.size.width*4/6, 30);
+    self.titleLabel.frame = CGRectMake(self.bounds.size.width/6, 30, self.bounds.size.width*4/6, 30);
     
     
     
@@ -263,98 +264,7 @@
     
     self.titleLabel.text = sortDetailList.title;
     
-   // [self.player initWithURL:[NSURL URLWithString:sortDetailList.playUrl64]];
-    
-    
-    
-    
-//    NSTimeInterval totalTimer = sortDetailList.duration;
-//    //分钟数
-//    
-//    NSTimeInterval totalM = (int)totalTimer/60;
-//    
-//   NSTimeInterval totalTimer1 = (int)totalTimer%60;
-//    
-//    
-//    self.endL.text = [NSString stringWithFormat:@"%02.0f:%02.0f",totalM,totalTimer1];
-    
-
 }
-
-
-
-
-
-
-//-(void)time{
-//    self.slider.minimumValue = 0;
-//    self.slider.maximumValue = self.playDetailModel.duration;
-//    
-//    //self.player.progress
-//    NSTimeInterval totalTimer = self.playDetailModel.duration;
-//    NSTimeInterval currentTime = self.player.progress;
-//    if (currentTime == totalTimer) {
-//        self.playB.alpha =1 ;
-//        self.pauseB.alpha = 0;
-//    }
-//    
-//    
-//    //NSLog(@"%0.0f",self.player.progress);
-//    
-//    self.slider.value = self.player.progress;
-//    //NSLog(@"%0.0f",self.slider.value);
-//    //把秒转换成分钟
-//    NSTimeInterval currentM = currentTime/60;
-//    currentTime = (int)currentTime%60;
-//    
-//    //NSTimeInterval totalM = totalTimer/60;
-//    totalTimer = (int)totalTimer%60;
-//    
-//    //把时间显示在lable上
-//    NSString *timeString = [NSString stringWithFormat:@"%02.0f:%02.0f",currentM, currentTime];
-//    self.currentL.text = timeString;
-//    
-//    
-//    
-//    
-//}
-
-//#pragma mark--滑块
-//-(void)sliderValueChange:(UISlider *)slider{
-//    self.player.progress = slider.value;
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-//#pragma mark--播放和暂停
-//-(void)bofang:(UIButton *)button{
-//    [self.player start];
-//    
-//    self.playB.alpha = 0;
-//    self.pauseB.alpha = 1;
-//    
-//}
-//
-//
-//-(void)pause:(UIButton *)button{
-//    
-//    [self.player pause];
-//    
-//    self.playB.alpha = 1;
-//    self.pauseB.alpha = 0;
-//    
-//}
-
-
 
 
 

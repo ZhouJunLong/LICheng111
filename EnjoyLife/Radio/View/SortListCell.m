@@ -73,7 +73,7 @@
     self.titleL.text = sortModel.title;
     self.introL.text = sortModel.intro;
     self.playCountL.text = [NSString stringWithFormat:@"%.1lf万",(CGFloat)sortModel.playsCounts / 10000];
-    self.trackCountL.text = [NSString stringWithFormat:@"%ld集",sortModel.tracks];
+    self.trackCountL.text = [NSString stringWithFormat:@"%d集",sortModel.tracks];
 
 }
 - (void)layoutSubviews

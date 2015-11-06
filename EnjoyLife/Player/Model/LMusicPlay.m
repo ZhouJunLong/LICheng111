@@ -118,14 +118,8 @@ static LMusicPlay *musicplay;
 
 -(void)silderRun
 {
-    
-    //float to = self.player.currentItem.duration.value;
-    //NSLog(@"%f", to);
-   
-        CGFloat progress = 1.0 * self.player.currentTime.value / self.player.currentTime.timescale;
-        [self.delegate audioManagerStreamer:self songProgress:progress];
-    
-
+    CGFloat progress = 1.0 * self.player.currentTime.value / self.player.currentTime.timescale;
+    [self.delegate audioManagerStreamer:self songProgress:progress];
 }
 
 

@@ -48,7 +48,6 @@
     [self.imagesURLArrays addObject:str];
   
     NSInteger count = self.imagesURLArrays.count;
-   //NSLog(@"%ld",count);
     
     self.scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0 , self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
     
@@ -169,7 +168,6 @@
     }else{
         _pageControl.currentPage = page-1;
     }
-    //NSLog(@"滚动停止,已经结束减速");
 }
 
 #pragma mark-实现自动轮播事件

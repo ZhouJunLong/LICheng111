@@ -140,15 +140,18 @@
 #pragma mark -- 数据解析
 -(void)handleTop
 {
-    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
     
-    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *html = operation.responseString;
-        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
+    
+    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
+    
+    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         NSDictionary *dic = [rootDic objectForKey:@"album"];
         
         SortDetailTop *detailTop = [[SortDetailTop alloc] init];
@@ -156,31 +159,32 @@
         
         // 赋值
         self.topView.detailTop = detailTop;
-        NSLog(@"%@", self.topView.detailTop);
         
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [a show];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-    
 }
 
 #pragma mark -- 数据解析
 -(void)handleTableView
 {
-    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
     
-    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *html = operation.responseString;
-        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
+    
+    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/others/ca/album/track/%ld/true/1/20?device=iPhone", self.albumId];
+    
+    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *rootDic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         NSDictionary *dic = [rootDic objectForKey:@"tracks"];
         NSArray *arr = [dic objectForKey:@"list"];
-
+        
         self.detailArr = [NSMutableArray array];
         for (NSDictionary *dic in arr) {
             SortDetailList *model = [[SortDetailList alloc] init];
@@ -188,16 +192,12 @@
             [self.detailArr addObject:model];
         }
         self.tableV.detailArr = self.detailArr;
-        NSLog(@"%@", self.tableV.detailArr);
         
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [a show];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-    
-    
-    
 }
 
 #pragma mark -- 返回按钮

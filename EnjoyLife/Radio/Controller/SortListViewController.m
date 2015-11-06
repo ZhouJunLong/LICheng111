@@ -77,17 +77,17 @@
     [self handle1:self.string];
 
     // 推荐页面
-    self.recommendView = [[RecommendView alloc]initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height)];
+    self.recommendView = [[RecommendView alloc]initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 104)];
     self.recommendView.tableView.delegate = self;
     
-    [WZSnakeHUD show:@"简 • 加载"];
+    [WZSnakeHUD show:@"听 • 加载"];
 
     [self.view addSubview:self.recommendView];
     
     [self handle:self.string];
     
     // tableView
-    self.sortListView = [[SortListView alloc] initWithFrame:(CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 60))];
+    self.sortListView = [[SortListView alloc] initWithFrame:(CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 104))];
     self.sortListView.array = self.segArr;
     self.sortListView.backgroundColor = [UIColor whiteSmokeColor];
     self.sortListView.tableV.delegate = self;
@@ -358,10 +358,8 @@
 #pragma mark -- 点击collectionView 触发方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld",indexPath.item);
     self.soid = self.string;
     self.name =self.segArr[indexPath.item];
-    NSLog(@"%@",self.name);
     
     CGFloat offSetX = (indexPath.row -1) * 70;
 
@@ -421,15 +419,18 @@
 #pragma mark -- 某一分类下某一模块 数据解析
 -(void)sortListHandle:(NSString *)sortId str:(NSString *)string
 {
-    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v1/category/album?calcDimension=hot&categoryId=%@&device=iPhone&pageId=1&pageSize=20&status=0&tagName=%@", sortId, string];
     
-    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *html = operation.responseString;
-        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *dic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
+    
+    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v1/category/album?calcDimension=hot&categoryId=%@&device=iPhone&pageId=1&pageSize=20&status=0&tagName=%@", sortId, string];
+    
+    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
+        
         NSArray *arr = [dic objectForKey:@"list"];
         
         if (arr.count != 0) {
@@ -443,26 +444,26 @@
         }
         self.sortListView.array = self.sortListArr;
         
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [a show];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-    
 }
 
 #pragma mark -- 某一分类 seg 数组 解析
 -(void)handle1:(NSString *)sortId
 {
-    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v1/category/tagsWithoutCover?categoryId=%@&contentType=album&device=iPhone", sortId ];
-    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *html = operation.responseString;
-        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *dic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
+    
+    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v1/category/tagsWithoutCover?categoryId=%@&contentType=album&device=iPhone", sortId ];
+    
+    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         NSArray *arr = [dic objectForKey:@"list"];
         
         self.segArr = [NSMutableArray arrayWithObjects:@"推荐", nil];
@@ -474,11 +475,11 @@
         //创建seg
         [self setUpSeg:self.segArr];
         
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [a show];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
 }
 
 #pragma mark -- 推荐页面解析
@@ -489,15 +490,18 @@
     self.titleModelArray = [NSMutableArray array];
     self.focusModelArray = [NSMutableArray array];
     
-    NSString *str=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v2/category/recommends?categoryId=%@&contentType=album&device=iPhone&scale=2&version=4.3.20",string];
-    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,id responseObject) {
-        NSString *html = operation.responseString;
-        NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary * dic=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应格式为 二进制流格式
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", @"text/plain", nil];
+    
+    NSString *url=[NSString stringWithFormat:@"http://mobile.ximalaya.com/mobile/discovery/v2/category/recommends?categoryId=%@&contentType=album&device=iPhone&scale=2&version=4.3.20",string];
+    
+    [manager GET:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary * dic=[NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         NSDictionary *categoryDic = [dic objectForKey:@"categoryContents"];
         NSArray *listArr = [categoryDic objectForKey:@"list"];
         
@@ -530,7 +534,7 @@
         NSDictionary *focusDic = [dic objectForKey:@"focusImages"];
         
         NSArray *listArr1 = [focusDic objectForKey:@"list"];
-      
+        
         for (NSDictionary *listDic in listArr1) {
             FocusModel *focusModel = [[FocusModel alloc]init];
             [focusModel setValuesForKeysWithDictionary:listDic];
@@ -541,16 +545,15 @@
         }
         self.recommendView.focusModelArray = self.focusModelArray;
         self.recommendView.imageArray = self.imageArray;
-        NSLog(@"%@", self.recommendView.focusModelArray);
-        NSLog(@"%@", self.recommendView.imageArray);
         
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         UIAlertView *a = [[UIAlertView alloc]initWithTitle:@"当前没有网络" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [a show];    }];
+        [a show];
+    }];
+
     
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-}
+   }
 
 
 #pragma mark -- 下拉刷新, 上啦加载
